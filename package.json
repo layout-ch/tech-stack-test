@@ -10,6 +10,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.15.5"
+    "@swup/head-plugin": "^2.2.1",
+    "alpinejs": "^3.14.1",
+    "astro": "^4.15.5",
+    "motion": "^10.18.0",
+    "swup": "^4.7.0"
   }
 }

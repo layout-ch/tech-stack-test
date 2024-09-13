@@ -4,11 +4,11 @@ import Card from "../components/Card.astro";
 ---
 
 <Layout title="Welcome to Astro.">
-  <main id="home" x-data="home">
-    <h1 class="title">WELCOME TO INDEX</h1>
+  <main>
+    <h1>WELCOME TO ABOUT</h1>
 
     <ul role="list" class="link-card-grid">
-      <Card href="/about" title="ABOUT" body="" />
+      <Card href="/" title="HOME" body="" />
     </ul>
   </main>
 </Layout>
@@ -49,19 +49,3 @@ import Card from "../components/Card.astro";
     background-position: 0%;
   }
 </style>
-
-<script>
-  //@ts-nocheck
-
-  document.addEventListener("alpine:init", () => {
-    Alpine.data("home", () => ({
-      init() {
-        animate(
-          "#home h1",
-          { transform: ["translateX(0%)", "translateX(-50%)"] },
-          { duration: 16, easing: "linear", repeat: Infinity }
-        );
-      },
-    }));
-  });
-</script>
