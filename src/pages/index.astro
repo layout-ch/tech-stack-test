@@ -4,7 +4,7 @@ import Card from "../components/Card.astro";
 ---
 
 <Layout title="Welcome to Astro.">
-  <main id="home" x-data="home">
+  <main id="home" x-data="home" x-init="init">
     <h1 class="title">WELCOME TO INDEX</h1>
 
     <ul role="list" class="link-card-grid">
@@ -56,6 +56,7 @@ import Card from "../components/Card.astro";
   document.addEventListener("alpine:init", () => {
     Alpine.data("home", () => ({
       init() {
+        console.log("SALUT");
         animate(
           "#home h1",
           { transform: ["translateX(0%)", "translateX(-50%)"] },
