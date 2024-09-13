@@ -4,7 +4,7 @@ import Card from "../components/Card.astro";
 ---
 
 <Layout title="Welcome to Astro.">
-  <main id="home" x-data="home">
+  <main id="home" x-data="test">
     <h1 class="title">WELCOME TO INDEX</h1>
 
     <ul role="list" class="link-card-grid">
@@ -13,55 +13,27 @@ import Card from "../components/Card.astro";
   </main>
 </Layout>
 
-<style>
-  main {
-    margin: auto;
-    padding: 1rem;
-    width: 800px;
-    max-width: calc(100% - 2rem);
-    color: white;
-    font-size: 20px;
-    line-height: 1.6;
-  }
-  ul {
-    padding: unset;
-  }
-  .astro-a {
-    position: absolute;
-    top: -32px;
-    transform: translatex(-50%);
-    width: 220px;
-    height: auto;
-    z-index: -1;
-  }
-  h1 {
-    font-size: 4rem;
-    font-weight: 700;
-    line-height: 1;
-    text-align: center;
-    margin-bottom: 1em;
-  }
-  .text-gradient {
-    background-image: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 400%;
-    background-position: 0%;
-  }
-</style>
-
 <script>
   //@ts-nocheck
 
   document.addEventListener("alpine:init", () => {
-    Alpine.data("home", () => ({
+    Alpine.data("test", () => ({
       init() {
-        console.log("SALUT");
-        animate(
+        const title = document.querySelector("#home h1");
+        title.classList.add("hoverable");
+        let animation = animate(
           "#home h1",
-          { transform: ["translateX(0%)", "translateX(-50%)"] },
-          { duration: 16, easing: "linear", repeat: Infinity }
+          { rotate: 360 },
+          { duration: 16, easing: "linear", repeat: Infinity, autoplay: false }
         );
+
+        title.addEventListener("mouseenter", () => {
+          animation.play();
+        });
+
+        title.addEventListener("mouseleave", () => {
+          animation.pause();
+        });
       },
     }));
   });

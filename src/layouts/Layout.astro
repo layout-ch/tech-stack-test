@@ -23,21 +23,48 @@ const { title } = Astro.props;
   </body>
 </html>
 <style is:global>
-  :root {
-    --accent: 136, 58, 234;
-    --accent-light: 224, 204, 250;
-    --accent-dark: 49, 10, 101;
-    --accent-gradient: linear-gradient(
-      45deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light)) 30%,
-      white 60%
-    );
-  }
   html {
     font-family: system-ui, sans-serif;
     background: #13151a;
   }
+
+  main {
+    color: white;
+  }
+  ul {
+    padding: unset;
+  }
+
+  h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 1em;
+  }
+
+  #home {
+    h1 {
+      color: red;
+      outline: 1px solid red;
+      &::after {
+        content: "error";
+        font-size: 12px;
+        margin-left: 20px;
+      }
+      &.hoverable {
+        cursor: pointer;
+        color: #00ff99;
+        outline: 1px solid #00ff99;
+        &::after {
+          content: "hover me";
+          font-size: 12px;
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+
   /* Define a transition duration during page visits */
   html.is-changing .transition-fade {
     transition: all 0.25s;
@@ -46,8 +73,6 @@ const { title } = Astro.props;
   /* Define the styles for the unloaded pages */
   html.is-animating .transition-fade {
     opacity: 0;
-    scale: 0.95;
-    transform-origin: top;
   }
 </style>
 
@@ -55,11 +80,13 @@ const { title } = Astro.props;
   //@ts-nocheck
   import Swup from "swup";
   import SwupHeadPlugin from "@swup/head-plugin";
+  import SwupScriptsPlugin from "@swup/scripts-plugin";
+
   import Alpine from "alpinejs";
   import { animate, scroll, timeline } from "motion";
 
   window.swup = new Swup({
-    plugins: [new SwupHeadPlugin()],
+    plugins: [new SwupHeadPlugin(), new SwupScriptsPlugin()],
   });
 
   window.Alpine = Alpine;
